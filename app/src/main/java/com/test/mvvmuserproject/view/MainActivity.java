@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    //test something here
+  // TODO extend coordinates later with GoogleMaps
 
     @BindView(R.id.usersList)
     RecyclerView usersList;
