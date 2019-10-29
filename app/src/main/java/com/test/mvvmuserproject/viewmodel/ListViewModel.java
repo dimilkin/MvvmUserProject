@@ -21,13 +21,15 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ListViewModel extends ViewModel {
 
-    public MutableLiveData<JsonResponse> users = new MutableLiveData<JsonResponse>();
+    public MutableLiveData<List<UserModel>> users = new MutableLiveData<List<UserModel>>();
     public MutableLiveData <Boolean> isLoading = new MutableLiveData<Boolean>();
     public MutableLiveData<Boolean> loadingError = new MutableLiveData<Boolean>();
 
     public ListViewModel() {
         DaggerComponent.create().inject(this);
     }
+
+    private ArrayList<UserModel> userResponce;
 
     @Inject
     public UsersService usersService;
@@ -48,7 +50,8 @@ public class ListViewModel extends ViewModel {
                   @Override
                   public void onSuccess( JsonResponse response) {
 
-                      users.setValue(response);
+                      userResponce = new ArrayList<>(Arrays.asList(response.getUsersArray()));
+                      users.setValue(userResponce);
                       isLoading.setValue(false);
                       loadingError.setValue(false);
                                         }

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListViewModel viewModel;
     private UsersListAdapter adapter = new UsersListAdapter(new ArrayList<>());
-    private ArrayList<UserModel> userResponce;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.users.observe(this, response -> {
             if (response != null) {
                 usersList.setVisibility(View.VISIBLE);
-                userResponce = new ArrayList<>(Arrays.asList(response.getUsersArray()));
-                adapter.updateUsers(userResponce);
+                adapter.updateUsers(response);
             }
         });
 
